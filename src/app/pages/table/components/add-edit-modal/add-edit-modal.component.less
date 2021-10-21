@@ -1,0 +1,63 @@
+@import "variables";
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  .group-fields {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:not(:first-child) {
+      margin-top: 50px;
+    }
+    .app-input, mat-form-field {
+      width: 200px;
+      &:first-child {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.action-buttons {
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  button {
+    inline-size: auto;
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}
+
+.plus-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+}
+
+.app-form {
+  margin-top: 20px;
+  .mat-form-field {
+    background: @input-background-color;
+    border: 1px @input-background-color solid;
+  }
+}
+
+mat-label {
+  color: @input-placeholder-color;
+}
+
+.profit {
+  margin-top: 20px;
+  width: 100%;
+}

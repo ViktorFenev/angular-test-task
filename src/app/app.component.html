@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="container__header">
+    <div class="container__header__navigation">
+      <button class="button-large button-confirm" *ngIf="tradeData$ | async" (click)="navigateTo()">Go to {{navigationLink$ | async}}</button>
+    </div>
+    <div class="container__header__action">
+      <button class="button-large button-confirm" (click)="openDialog()">Add trade</button>
+    </div>
+  </div>
+  <div class="container__content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

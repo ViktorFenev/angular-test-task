@@ -1,0 +1,37 @@
+<div class="container" *ngIf="dataSource$ | async">
+  <mat-table class="container__table" [dataSource]="dataSource">
+    <ng-container matColumnDef="Entry date">
+      <mat-header-cell *matHeaderCellDef> Entry date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.entryDate | date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Entry price">
+      <mat-header-cell *matHeaderCellDef> Exit date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.exitDate | date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Exit date">
+      <mat-header-cell *matHeaderCellDef> Entry price </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.entryPrice}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Exit price">
+      <mat-header-cell *matHeaderCellDef> Exit price </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.exitPrice}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Profit">
+      <mat-header-cell *matHeaderCellDef> Profit </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.profit}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element" data-label="Actions" class="actions">
+        <span class="material-icons" (click)="onEditTrade(element)">edit</span>
+        <span class="material-icons" (click)="onDeleteTrade(element)">delete</span>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let element; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+</div>
+<div class="empty-container" *ngIf="!(dataSource$ | async)">
+  <h1>Please, create your first trade by clicking the button in the header</h1>
+</div>

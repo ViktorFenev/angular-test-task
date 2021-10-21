@@ -1,0 +1,43 @@
+<div class="modal-container">
+  <h1>Add trade</h1>
+  <form [formGroup]="tradeForm" class="app-form" autocomplete="off">
+    <div class="group-fields">
+      <mat-form-field appearance="fill">
+        <mat-label>Entry date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName='entryDate'>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker color="primary"></mat-datepicker>
+      </mat-form-field>
+
+      <div class="app-input">
+        <input nz-input id="entryPrice" type="number" min="0" (input)="calculateProfit()" placeholder=" " formControlName='entryPrice' autocomplete="off"/>
+        <label for="entryPrice">Entry Price</label>
+      </div>
+    </div>
+
+    <div class="group-fields">
+      <mat-form-field appearance="fill">
+        <mat-label>Exit date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName='exitDate'>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+      </mat-form-field>
+
+      <div class="app-input">
+        <input nz-input id="exitPrice" type="number" min="0" (input)="calculateProfit()" placeholder=" " formControlName='exitPrice' autocomplete="off"/>
+        <label for="exitPrice">Exit Price</label>
+      </div>
+    </div>
+    <div class="app-input profit">
+      <input readonly nz-input id="profit" type="number" placeholder=" " formControlName='profit' autocomplete="off"/>
+      <label for="profit">Profit</label>
+    </div>
+  </form>
+  <span class="error-hint">{{(loginError | async)}}</span>
+  <div mat-dialog-actions class="action-buttons">
+    <button class="button-large button-reject" [mat-dialog-close]>Cancel</button>
+    <button [mat-dialog-close] [disabled]="!tradeForm.valid" (click)="closeModal()" class="button-large button-confirm">
+      Confirm
+    </button>
+  </div>
+</div>

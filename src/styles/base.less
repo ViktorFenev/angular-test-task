@@ -1,0 +1,131 @@
+@import "mixin";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 48px;
+  color: #37474F;
+  margin: 0;
+  text-align: center;
+}
+
+.app-input {
+  .float-placeholder(@input-placeholder-color);
+  height: 56px;
+  width: 350px;
+  position: relative;
+  input {
+    height: 56px;
+    width: 100%;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 12px;
+    background: @input-background-color;
+    color: @default-text-color;
+  }
+
+  label {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+}
+
+.button-large {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 30px;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 20px;
+  background: #93908c;
+  color: #FFFFFF;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &:disabled {
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
+}
+
+.button-confirm {
+  background: @button-color-confirm;
+}
+
+.button-reject {
+  background: @button-color-reject;
+}
+
+.mat-date-range-input-mirror {
+  min-width: 65px !important;
+}
+
+.app-form {
+  margin-top: 20px;
+  .mat-form-field {
+    color: black;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 8px 12px 1px;
+    height: 56px;
+
+    input {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      display: flex;
+      align-items: flex-end;
+      letter-spacing: 0.44px;
+      color: #37474F;
+    }
+  }
+
+  mat-label {
+    color: #78909C;
+    cursor: pointer;
+    font-family: Inter, sans-serif;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-wrapper {
+    padding: 0;
+  }
+
+  .mat-select-arrow-wrapper {
+    padding-top: 10px !important;
+  }
+
+  .mat-form-field-flex {
+    padding: 0 !important;
+    background-color: transparent !important;
+  }
+}
