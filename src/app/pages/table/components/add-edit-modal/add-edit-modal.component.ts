@@ -39,7 +39,7 @@ export class AddEditModalComponent implements OnInit {
 
   calculateProfit(): void {
     this.tradeForm.controls.profit.setValue(
-      +this.tradeForm.controls.entryPrice.value + +this.tradeForm.controls.exitPrice.value
+      +this.tradeForm.controls.exitPrice.value - +this.tradeForm.controls.entryPrice.value
     );
   }
 
