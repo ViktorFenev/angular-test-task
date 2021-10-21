@@ -39,7 +39,9 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     if (!data.length) {
       return this.appService.navigateTo();
     }
-    const parsedData = data.map(item => ({ profit: item.profit, date: item.exitDate }));
+    const parsedData = data
+      .map(item => ({ profit: item.profit, date: item.exitDate }))
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     const chartData = parsedData.reduce((acc: any, cV) => {
       if (!acc[cV.date]) {
         acc[cV.date] = 0;
@@ -48,10 +50,9 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
       return acc;
     }, {});
     let dateArray = Object.keys(chartData);
-    const profitArray = Object.values(chartData);
     dateArray = dateArray
-      .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
-      .map(date => new Date(date).toLocaleDateString("en-US"));
+      .map(date => new Date(date).toLocaleDateString('en-US'));
+    const profitArray = Object.values(chartData);
     this.setCharOptions(dateArray, profitArray);
   }
 
