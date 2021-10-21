@@ -4,6 +4,9 @@ import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ITradeData } from '../../interfaces/app.interface';
 import { AppService } from '../../services/app.service';
+import { AddEditModalComponent } from './components/add-edit-modal/add-edit-modal.component';
+import { v4 as uuidv4 } from 'uuid';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-table',
@@ -17,7 +20,8 @@ export class TableComponent implements OnInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
 
   constructor(
-    private appService: AppService
+    private appService: AppService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +40,15 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   onEditTrade(tradeData: ITradeData): void {
-    this.appService.openManageModal(tradeData);
+    const dialogRef = this.dialog.open(AddEditModalComponent, { data: tradeData });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data?.action === 'update') {
+        const tradeArray = this.appService.tradesData$.getValue();
+        let index = tradeArray.findIndex(data => data._id === tradeData._id);
+        tradeArray[index] = data.trade;
+        this.appService.tradesData$.next(tradeArray);
+      }
+    });
   }
 
   onDeleteTrade(element: ITradeData): void {

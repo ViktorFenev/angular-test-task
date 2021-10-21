@@ -5,8 +5,7 @@ Angular application to render chart from table of trades using exit date and pro
 ## Setup environment
 
  1. Install [Node v14](https://nodejs.org/en/).
- 2. Install [Angular CLI](https://angular.io/cli).
- 3. Run `npm install`.
+ 2. Run `npm install`.
 
 ## Build application
 
