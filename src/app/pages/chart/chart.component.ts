@@ -6,7 +6,7 @@ import { ITradeData } from '../../interfaces/app.interface';
 
 @Component({
   selector: 'app-chart',
-  templateUrl: './chart.component.html',
+  template: `<div class="container" #chart></div>\n`,
   styleUrls: ['./chart.component.less']
 })
 export class ChartComponent implements AfterViewInit, OnDestroy {
