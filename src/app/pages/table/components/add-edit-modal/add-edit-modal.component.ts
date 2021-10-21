@@ -7,8 +7,7 @@ import { ITradeData } from '../../../../interfaces/app.interface';
 @Component({
   selector: 'app-add-edit-modal',
   templateUrl: './add-edit-modal.component.html',
-  styleUrls: ['./add-edit-modal.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./add-edit-modal.component.less']
 })
 export class AddEditModalComponent implements OnInit {
   tradeForm: FormGroup;
