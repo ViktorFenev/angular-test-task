@@ -11,7 +11,6 @@ import { ITradeData } from '../../../../interfaces/app.interface';
 })
 export class AddEditModalComponent implements OnInit {
   tradeForm: FormGroup;
-  loginError: Subject<string> = new Subject<string>();
   tradeData: ITradeData;
 
   constructor(
@@ -30,10 +29,6 @@ export class AddEditModalComponent implements OnInit {
       exitPrice: [this.tradeData?.exitPrice || '', [Validators.required, Validators.min(0)]],
       profit: [this.tradeData?.profit || 0],
     });
-  }
-
-  isExitDateValid(): ValidatorFn {
-    return (control): ValidationErrors | null => (this.tradeForm?.controls.entryDate.value?.getTime() > this.tradeForm?.controls.exitDate.value?.getTime()) ? { incorrect: true } : null;
   }
 
   calculateProfit(): void {

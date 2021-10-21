@@ -33,7 +33,6 @@
       <label for="profit">Profit</label>
     </div>
   </form>
-  <span class="error-hint">{{(loginError | async)}}</span>
   <div mat-dialog-actions class="action-buttons">
     <button class="button-large button-reject" [mat-dialog-close]>Cancel</button>
     <button [mat-dialog-close] [disabled]="!tradeForm.valid" (click)="closeModal()" class="button-large button-confirm">
