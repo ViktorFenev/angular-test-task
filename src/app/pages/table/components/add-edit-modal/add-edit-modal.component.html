@@ -4,7 +4,7 @@
     <div class="group-fields">
       <mat-form-field appearance="fill">
         <mat-label>Entry date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName='entryDate'>
+        <input readonly matInput [max]="tradeForm.controls.exitDate.value" [matDatepicker]="picker" formControlName='entryDate'>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker color="primary"></mat-datepicker>
       </mat-form-field>
@@ -18,7 +18,7 @@
     <div class="group-fields">
       <mat-form-field appearance="fill">
         <mat-label>Exit date</mat-label>
-        <input matInput [matDatepicker]="picker2" formControlName='exitDate'>
+        <input readonly matInput [min]="tradeForm.controls.entryDate.value" [matDatepicker]="picker2" formControlName='exitDate'>
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2 color="primary"></mat-datepicker>
       </mat-form-field>

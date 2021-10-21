@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -25,7 +25,7 @@ export class AddEditModalComponent implements OnInit {
   ngOnInit(): void {
     this.tradeForm = this.formBuilder.group({
       entryDate: [this.tradeData?.entryDate || null, [Validators.required]],
-      exitDate: [this.tradeData?.exitDate || null, [Validators.required, this.isExitDateValid()]],
+      exitDate: [this.tradeData?.exitDate || null, [Validators.required]],
       entryPrice: [this.tradeData?.entryPrice || '', [Validators.required, Validators.min(0)]],
       exitPrice: [this.tradeData?.exitPrice || '', [Validators.required, Validators.min(0)]],
       profit: [this.tradeData?.profit || 0],
@@ -33,7 +33,7 @@ export class AddEditModalComponent implements OnInit {
   }
 
   isExitDateValid(): ValidatorFn {
-    return (control): ValidationErrors | null => (control.value?.getTime() < this.tradeForm?.controls.entryDate.value?.getTime()) ? { incorrect: true } : null;
+    return (control): ValidationErrors | null => (this.tradeForm?.controls.entryDate.value?.getTime() > this.tradeForm?.controls.exitDate.value?.getTime()) ? { incorrect: true } : null;
   }
 
   calculateProfit(): void {

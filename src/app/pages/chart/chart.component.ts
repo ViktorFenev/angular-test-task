@@ -52,7 +52,12 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     let dateArray = Object.keys(chartData);
     dateArray = dateArray
       .map(date => new Date(date).toLocaleDateString('ru-RU'));
-    const profitArray = Object.values(chartData);
+    let sum = 0;
+    const profitArray = Object.values(chartData).map((item: any) => {
+      const res = item + sum;
+      sum += item;
+      return res;
+    });
     this.setCharOptions(dateArray, profitArray);
   }
 
