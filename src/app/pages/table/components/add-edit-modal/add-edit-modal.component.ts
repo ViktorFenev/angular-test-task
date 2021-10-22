@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ITradeData } from '../../../../interfaces/app.interface';
 import { AppService } from '../../../../services/app.service';
 
@@ -23,7 +23,6 @@ export class AddEditModalComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder
   ) {
     this.tradeData = data;
-    console.log(this.tradeData);
   }
 
   ngOnInit(): void {
