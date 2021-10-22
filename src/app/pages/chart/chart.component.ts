@@ -39,25 +39,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     if (!data.length) {
       return this.appService.navigateTo();
     }
-    const parsedData = data
-      .map(item => ({ profit: item.profit, date: item.exitDate }))
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    const chartData = parsedData.reduce((acc: any, cV) => {
-      if (!acc[cV.date]) {
-        acc[cV.date] = 0;
-      }
-      acc[cV.date] = acc[cV.date] + cV.profit;
-      return acc;
-    }, {});
-    let dateArray = Object.keys(chartData);
-    dateArray = dateArray
-      .map(date => new Date(date).toLocaleDateString('ru-RU'));
-    let sum = 0;
-    const profitArray = Object.values(chartData).map((item: any) => {
-      const res = item + sum;
-      sum += item;
-      return res;
-    });
+    const { dateArray, profitArray } = this.appService.calculateChart(data);
     this.setCharOptions(dateArray, profitArray);
   }
 

@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { ITradeData } from '../../interfaces/app.interface';
 import { AppService } from '../../services/app.service';
 import { AddEditModalComponent } from './components/add-edit-modal/add-edit-modal.component';
-import { v4 as uuidv4 } from 'uuid';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
