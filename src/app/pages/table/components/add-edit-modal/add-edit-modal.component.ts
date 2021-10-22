@@ -25,16 +25,20 @@ export class AddEditModalComponent implements OnInit {
     this.tradeForm = this.formBuilder.group({
       entryDate: [this.tradeData?.entryDate || null, [Validators.required]],
       exitDate: [this.tradeData?.exitDate || null, [Validators.required]],
-      entryPrice: [this.tradeData?.entryPrice || '', [Validators.required, Validators.min(0)]],
-      exitPrice: [this.tradeData?.exitPrice || '', [Validators.required, Validators.min(0)]],
-      profit: [this.tradeData?.profit || 0],
+      entryPrice: [this.tradeData?.entryPrice || null, [Validators.required, Validators.min(0)]],
+      exitPrice: [this.tradeData?.exitPrice || null, [Validators.required, Validators.min(0)]],
+      profit: [this.tradeData?.profit || null],
     });
   }
 
   calculateProfit(): void {
-    this.tradeForm.controls.profit.setValue(
-      +this.tradeForm.controls.exitPrice.value - +this.tradeForm.controls.entryPrice.value
-    );
+    if (this.tradeForm.controls.exitPrice.value && this.tradeForm.controls.entryPrice.value) {
+      this.tradeForm.controls.profit.setValue(
+        +this.tradeForm.controls.exitPrice.value - +this.tradeForm.controls.entryPrice.value
+      );
+    } else {
+      this.tradeForm.controls.profit.setValue(null);
+    }
   }
 
   closeModal(): void {
